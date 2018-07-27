@@ -46,7 +46,7 @@
                     <div class="col-sm-9">
                         <div class="form-check form-check-inline">
                             <label class="form-check-label">
-                                <input type="radio" name="nilai" id="nilai1" value="0" class="styled" checked="checked">
+                                <input type="radio" name="nilai" id="nilai1" value="0" class="styled">
                                 0
                             </label>
                         </div>
@@ -161,6 +161,12 @@
             var id = $(this).attr('data-id');
             var nama = $.trim( $('#nama_' + id).html() );
             var deskripsi = $.trim( $('#deskripsi_' + id).html() );
+            var nilai = $.trim( $(this).html() );
+
+
+            // if(nilai != '0') {
+            //     $('input[name=nilai][value=' + nilai + ']').attr('checked', true);
+            // }
 
             $('#elemen_id').val(id);
             $('#nama').val(nama);

@@ -17,6 +17,9 @@
 		</tr>
 	</thead>
 	<tbody>
+		@php
+			$total = 0;
+		@endphp
 		@foreach($pokjas as $index => $pokja)
 			@php
 				$jumlah = 0;
@@ -30,6 +33,9 @@
 					@endforeach
 				@endforeach
 			@endforeach
+			@php
+				$total += $jumlah;
+			@endphp
 
 			<tr>
 				<td class="text-center">{{ ($index + 1) }}</td>
@@ -41,7 +47,7 @@
 
 		<tr>
 			<td class="text-center" colspan="2">Total</td>
-			<td class="text-center">{{ rand(0, 5) }}</td>
+			<td class="text-center">{{ $total }}</td>
 		</tr>
 	</tbody>
 </table>

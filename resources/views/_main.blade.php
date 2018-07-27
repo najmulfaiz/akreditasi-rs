@@ -183,20 +183,35 @@
                             </ul>
                         </li>
                         @endif
+
+                        @if(Auth::user()->level == 3)
                         <li class="nav-item">
                             <a href="{{ route('upload-nilai.pokja') }}" class="nav-link">
                                 <i class="icon-stack"></i>
-                                <span>Upload & Penilaian</span>
+                                <span>Penilaian Bab</span>
                             </a>
                         </li>
-                        <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link"><i class="icon-database2"></i> <span>Laporan</span></a>
+                        @endif
 
-                            <ul class="nav nav-group-sub" data-submenu-title="Master">
-                                <li class="nav-item"><a href="{{ route('laporan.capaian') }}" class="nav-link" target="_blank">Capaian</a></li>
-                                <li class="nav-item"><a href="{{ route('laporan.dokumen') }}" class="nav-link" target="_blank">Dokumen</a></li>
-                            </ul>
+                        @if(Auth::user()->level == 4)
+                        <li class="nav-item">
+                            <a href="{{ route('upload-nilai.pokja') }}" class="nav-link">
+                                <i class="icon-stack"></i>
+                                <span>Upload Dokumen</span>
+                            </a>
                         </li>
+                        @endif
+                        
+                        @if(Auth::user()->level == 2)
+                            <li class="nav-item nav-item-submenu">
+                                <a href="#" class="nav-link"><i class="icon-database2"></i> <span>Laporan</span></a>
+
+                                <ul class="nav nav-group-sub" data-submenu-title="Master">
+                                    <li class="nav-item"><a href="{{ route('laporan.capaian') }}" class="nav-link" target="_blank">Capaian</a></li>
+                                    <li class="nav-item"><a href="{{ route('laporan.dokumen') }}" class="nav-link" target="_blank">Dokumen</a></li>
+                                </ul>
+                            </li>
+                        @endif
                         <!-- /main -->
 
                     </ul>

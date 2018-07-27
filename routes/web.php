@@ -19,6 +19,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/capaian', 'HomeController@capaian')->name('home.capaian');
 
 Route::group(['middleware' => ['auth']], function () {
 	Route::resource('user', 'UserController')->except(['show']);
