@@ -45,10 +45,11 @@
 @endsection
 
 @section('script')
-    <script></script>
     <script>
         $(document).ready(function(){
-            $('.table').DataTable();
+            $('.table').DataTable({
+                "paging": false
+            });
         });
 
         $(document).on('click', '.btn-view', function(){

@@ -24,7 +24,10 @@ Route::get('/home/capaian', 'HomeController@capaian')->name('home.capaian');
 Route::group(['middleware' => ['auth']], function () {
 	Route::resource('user', 'UserController')->except(['show']);
 	Route::resource('pokja', 'PokjaController')->except(['show']);
-	Route::resource('standar', 'StandarController')->except(['show']);
+	Route::resource('standar', 'StandarController')->except(['show', 'index', 'create']);
+	Route::get('/standar/{id}/create', 'StandarController@create')->name('standar.create');
+	Route::get('/standar/{id}/list', 'StandarController@index')->name('standar.index');
+	Route::get('standar/pokja', 'StandarController@pokja')->name('standar.pokja');
 
 	// ELEMEN ROUTING
 	Route::get('pokja/elemen', 'ElemenController@pokja')->name('elemen.pokja');
@@ -36,6 +39,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::patch('pokja/standar/elemen/{id}', 'ElemenController@update')->name('elemen.update');
 	Route::patch('pokja/standar/elemen/{id}/nilai', 'ElemenController@nilai')->name('elemen.nilai');
 	Route::delete('pokja/standar/elemen/{id}', 'ElemenController@destroy')->name('elemen.destroy');
+	Route::patch('elemen/{id}/note', 'ElemenController@note')->name('elemen.note');
 
 	// UPLOAD & PENILAIAN ROUTING
 	Route::get('pokja/upload-nilai', 'UploadNilaiController@pokja')->name('upload-nilai.pokja');

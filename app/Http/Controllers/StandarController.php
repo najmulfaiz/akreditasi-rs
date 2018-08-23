@@ -12,11 +12,12 @@ class StandarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $standars = Standar::orderBy('nama')
+        $standars = Standar::where('pokja_id', $id)
+                    ->orderBy('nama')
                     ->get();
-        return view('standar.index', compact('standars'));
+        return view('standar.index', compact('standars', 'id'));
     }
 
     /**
@@ -24,12 +25,12 @@ class StandarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         $pokjas = \App\Pokja::orderBy('nama')
                     ->get();
 
-        return view('standar.create', compact('pokjas'));
+        return view('standar.create', compact('id', 'pokjas'));
     }
 
     /**
@@ -52,7 +53,7 @@ class StandarController extends Controller
             'pokja_id' => $request['pokja']
         ]);
 
-        return redirect()->route('standar.index')->with('pesan', 'Standar "' . $standar->nama . '" berhasil ditambahkan!');
+        return redirect()->route('standar.index', $standar->pokja_id)->with('pesan', 'Standar "' . $standar->nama . '" berhasil ditambahkan!');
     }
 
     /**
@@ -103,7 +104,7 @@ class StandarController extends Controller
         $standar->pokja_id  = $request['pokja'];
         $standar->update();
 
-        return redirect()->route('standar.index')->with('pesan', 'Standar "' . $standar->nama . '" berhasil diubah!');
+        return redirect()->route('standar.index', $standar->pokja_id)->with('pesan', 'Standar "' . $standar->nama . '" berhasil diubah!');
     }
 
     /**
@@ -115,5 +116,12 @@ class StandarController extends Controller
     public function destroy($id)
     {
         Standar::destroy($id);
+    }
+
+    public function pokja()
+    {
+        $pokjas = \App\Pokja::all();
+
+        return view('standar.pokja', compact('pokjas'));
     }
 }

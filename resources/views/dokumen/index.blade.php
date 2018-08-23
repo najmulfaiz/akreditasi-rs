@@ -1,7 +1,7 @@
 @extends('_main')
 
 @section('title')
-    Dokumen
+    <a href="{{ route('upload-nilai.index', $elemen->standar_id) }}"><i class="icon-arrow-left52 mr-2 icon-2x" title="Kembali"></i></a> Dokumen
 @endsection
 
 @section('content')
@@ -21,14 +21,22 @@
 
 <div class="row justify-content-center">
     <div class="col-md-12">
+        @if(Auth::user()->level == 4 && $elemen->note != '')
+            <div class="alert alert-warning alert-styled-left alert-dismissible">
+                <span class="font-weight-semibold">Catatan!</span><br />
+                {{ $elemen->note }}
+            </div>
+        @endif
         <div class="card">
             <div class="card-header header-elements-inline">
                 <h5 class="card-title">List Dokumen</h5>
+                @if(Auth::user()->level == 4)
                 <div class="header-elements">
                     <div class="list-icons">
                     <a href="{{ route('dokumen.create', $id) }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>&nbsp; Tambah</a>
                     </div>
                 </div>
+                @endif
             </div>
             <div class="card-body">
                 <table class="table-detail">
@@ -61,16 +69,29 @@
                             <td>{{ $dokumen->updated_at }}</td>
                             <td>
                                 <button type="button" data-id="{{ $dokumen->id }}" class="btn btn-info btn-sm btn-view">View</button>
+                                @if(Auth::user()->level == 4)
                                 <button type="button" data-id="{{ $dokumen->id }}" class="btn btn-primary btn-sm btn-edit">Edit</button>
                                 <button type="button" data-id="{{ $dokumen->id }}" class="btn btn-danger btn-sm btn-delete">Delete</button>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
+        @if(Auth::user()->level == 3)
+        <div class="card">
+            <div class="card-body">
+                <p class="font-weight-bold">Catatan :</p>
+                <input type="hidden" class="form-control" id="elemen_id" name="elemen_id" value="{{ $elemen->id }}">
+                <textarea name="note" id="note" class="form-control" rows="5">{{ $elemen->note }}</textarea>
+                <button class="btn btn-primary btn-sm mt-2" id="btn_simpan_note">Simpan</button>
+            </div>
+        </div>
+        @endif
     </div>
 </div>
+
 @endsection
 
 @section('script')
@@ -108,6 +129,30 @@
                     }
                 });
             }
+        });
+
+        $(document).on('click', '#btn_simpan_note', function(){
+            var csrf_token = $('meta[name=csrf-token]').attr('content');
+            var note = $.trim( $('#note').val() );
+            var elemen_id = $.trim( $('#elemen_id').val() );
+
+            $.ajax({
+                url: '/elemen/' + elemen_id + '/note',
+                type: 'POST',
+                data: { 
+                    '_method': 'PATCH', 
+                    '_token': csrf_token,
+                    'note' : note
+                },
+                success: function(data) {
+                    // console.log(data);
+                    alert(data.msg);
+                    location.reload();
+                },
+                error: function(xhr) {
+                    alert("Oops! Something wrong!");
+                }
+            });
         });
     </script>
 @endsection

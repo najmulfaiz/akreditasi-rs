@@ -31,6 +31,7 @@ class HomeController extends Controller
         $pokjas = \App\Pokja::all();
 
         $capaian = [];
+        $status = 'Lulus';
 
         foreach($pokjas as $index => $pokja):
             $bab_skor = 0;
@@ -56,8 +57,15 @@ class HomeController extends Controller
                 $pokja->singkatan,
                 $skor
             );
+
+            if($skor < 80) {
+                $status = 'Tidak Lulus';
+            }
         endforeach;
 
-        return response()->json($capaian);
+        return response()->json([
+            'capaian' => $capaian,
+            'status' => $status
+        ]);
     }
 }

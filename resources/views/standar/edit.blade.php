@@ -20,7 +20,8 @@
                         <label for="nama" class="col-md-3 col-form-label">{{ __('Pokja') }}</label>
 
                         <div class="col-md-6">
-                            <select name="pokja" id="pokja" class="form-control{{ $errors->has('pokja') ? ' is-invalid' : '' }}">
+                            <input type="hidden" name="pokja" id="pokja" class="form-control" value="{{ $standar->pokja_id }}" readonly>
+                            <select name="pokja_nama" id="pokja_nama" class="form-control{{ $errors->has('pokja') ? ' is-invalid' : '' }}" disabled>
                                 <option value=""> -- Pilih Pokja -- </option>
                                 @foreach($pokjas as $pokja)
                                     <option value="{{ $pokja->id }}" {{ $pokja->id == $standar->pokja_id ? 'selected':'' }}>{{ $pokja->nama }}</option>

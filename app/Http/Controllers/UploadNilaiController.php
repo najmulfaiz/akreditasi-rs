@@ -89,8 +89,7 @@ class UploadNilaiController extends Controller
 
     public function pokja()
     {
-        $pokjas = \App\Pokja::orderBy('nama', 'asc')
-                    ->get();
+        $pokjas = \App\Pokja::all();
 
         return view('upload-nilai.pokja', compact('pokjas'));
     }

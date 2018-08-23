@@ -14,8 +14,7 @@ class PokjaController extends Controller
      */
     public function index()
     {
-        $pokjas = Pokja::orderBy('nama')
-                    ->get();
+        $pokjas = Pokja::all();
 
         return view('pokja.index', compact('pokjas'));
     }

@@ -11,7 +11,8 @@ class Elemen extends Model
     	'nama',
     	'deskripsi',
     	'nilai',
-    	'standar_id'
+    	'standar_id',
+        'note'
     ];
 
     public function standar()

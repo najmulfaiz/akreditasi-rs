@@ -1,7 +1,15 @@
 @extends('_main')
 
 @section('title')
-    Upload & Penilaian
+    @section('title')
+        @if(Auth::user()->level == 3)
+            <a href="{{ route('upload-nilai.standar', $standar->pokja_id) }}"><i class="icon-arrow-left52 mr-2 icon-2x" title="Kembali"></i></a> Penilaian Bab
+        @endif
+
+        @if(Auth::user()->level == 4)
+            <a href="{{ route('upload-nilai.standar', $standar->pokja_id) }}"><i class="icon-arrow-left52 mr-2 icon-2x" title="Kembali"></i></a> Upload Dokumen
+        @endif
+    @endsection
 @endsection
 
 @section('content')
@@ -108,6 +116,7 @@
                         
                         @if(Auth::user()->level == 3 || Auth::user()->level == 1)
                         <td>Nilai</td>
+                        <td>Dokumen</td>
                         @endif
 
                         @if(Auth::user()->level == 4 || Auth::user()->level == 1)
@@ -127,6 +136,9 @@
                                 <button type="button" class="btn btn-link btn-sm btn-nilai" data-id="{{ $elemen->id }}">
                                     {{ $elemen->nilai == null ? '0' : $elemen->nilai }}
                                 </button>
+                            </td>
+                            <td>
+                                <button type="button" data-id="{{ $elemen->id }}" class="btn btn-success btn-sm btn-upload">Dokumen</button>
                             </td>
                             @endif
 

@@ -1,7 +1,15 @@
 @extends('_main')
 
 @section('title')
-    Upload & Penilaian
+    @section('title')
+        @if(Auth::user()->level == 3)
+            <a href="{{ route('upload-nilai.pokja') }}"><i class="icon-arrow-left52 mr-2 icon-2x" title="Kembali"></i></a> Penilaian Bab
+        @endif
+
+        @if(Auth::user()->level == 4)
+            <a href="{{ route('upload-nilai.pokja') }}"><i class="icon-arrow-left52 mr-2 icon-2x" title="Kembali"></i></a> Upload Dokumen
+        @endif
+    @endsection
 @endsection
 
 @section('content')

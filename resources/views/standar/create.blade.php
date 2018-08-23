@@ -19,10 +19,11 @@
                         <label for="nama" class="col-md-3 col-form-label">{{ __('Pokja') }}</label>
 
                         <div class="col-md-6">
-                            <select name="pokja" id="pokja" class="form-control{{ $errors->has('pokja') ? ' is-invalid' : '' }}">
+                            <input type="hidden" name="pokja" id="pokja" class="form-control" value="{{ $id }}" readonly>
+                            <select name="pokja_name" id="pokja_name" class="form-control{{ $errors->has('pokja') ? ' is-invalid' : '' }}" disabled>
                                 <option value=""> -- Pilih Pokja -- </option>
                                 @foreach($pokjas as $pokja)
-                                    <option value="{{ $pokja->id }}">{{ $pokja->nama }}</option>
+                                    <option value="{{ $pokja->id }}" {{ $pokja->id == $id ? 'selected':'' }}>{{ $pokja->nama }}</option>
                                 @endforeach
                             </select>
 

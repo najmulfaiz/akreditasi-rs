@@ -16,7 +16,8 @@ class UserController extends Controller
     public function index()
     {
         $levels = [ 1 => 'Super Admin', 'Ketua Akreditasi', 'Ketua Pokja', 'Anggota Pokja'];
-        $users = User::orderBy('name', 'asc')
+        $users = User::where('level', '!=', 1)
+                        ->orderBy('name', 'asc')
                         ->get();
 
         return view('user.index', compact('users', 'levels'));

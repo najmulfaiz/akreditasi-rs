@@ -114,8 +114,7 @@ class ElemenController extends Controller
 
     public function pokja()
     {
-        $pokjas = \App\Pokja::orderBy('nama', 'asc')
-                    ->get();
+        $pokjas = \App\Pokja::all();
 
         return view('elemen.pokja', compact('pokjas'));
     }
@@ -140,6 +139,19 @@ class ElemenController extends Controller
         return response()->json([
             'error' => false,
             'msg' => 'Nilai berhasil disimpan'
+        ]);
+    }
+
+    public function note(Request $request, $id)
+    {
+        $elemen = Elemen::findOrFail($id);
+
+        $elemen->note = $request->note;
+        $elemen->update();
+
+        return response()->json([
+            'error' => false,
+            'msg' => 'Catatan berhasil disimpan'
         ]);
     }
 }

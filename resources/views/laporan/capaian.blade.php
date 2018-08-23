@@ -1,13 +1,13 @@
 <title>Rekapitulasi Capaian Seluruh Bab</title>
 <style>
-	h3 { text-align: center; }
+	.title { text-align: center; }
 	table { border-collapse: collapse; }
 	table, th, td { border: 1px solid black; padding: 5px 5px; }
 	th { text-align: center; }
-	th, td { height: 40px;  }
+	th, td { height: 30px;  }
 	.text-center { text-align: center; }
 </style>
-<h3 style="text-align: center;">REKAPITULASI CAPAIAN SELURUH BAB</h3>
+<h3 class="title">REKAPITULASI CAPAIAN SELURUH BAB</h3>
 <table width="100%">
 	<thead>
 		<tr>
@@ -22,6 +22,7 @@
 		@php 
 			$total_skor = 0;
 			$total_maksimal = 0;
+			$status = 'Lulus';
 		@endphp
 
 		@foreach($pokjas as $index => $pokja)
@@ -61,6 +62,12 @@
 				$total_skor += $bab_skor;
 				$total_maksimal += $bab_maksimal;
 			@endphp
+
+			@if($bab_skor < 80)
+				@php
+					$status = 'Tidak Lulus';
+				@endphp
+			@endif
 		@endforeach
 
 		<tr>
@@ -71,3 +78,9 @@
 		</tr>
 	</tbody>
 </table>
+
+<h3>Status : {{ $status }}</h3>
+<p class="text-muted">
+    Kriteria Kelulusan : <br>
+    Semua bab skor >= 80% (min 80%)
+</p>

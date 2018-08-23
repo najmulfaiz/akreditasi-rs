@@ -7,6 +7,13 @@
             <div class="card">
                 <div class="card-body">
                     <div id="grafik_capaian" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
+                    
+                    <hr>
+                    <h4 id="status"></h4>
+                    <p class="text-default">
+                        Kriteria Kelulusan : <br>
+                        Semua bab skor >= 80% (min 80%)
+                    </p>
                 </div>
             </div>
         </div>
@@ -26,7 +33,8 @@
                 dataType: 'json',
                 data: { },
                 success: function(data) {
-                    initGrafik(data);
+                    $('#status').html('Status : ' + data.status);
+                    initGrafik(data.capaian);
                 }, 
                 error: function(xhr) {
                     console.log(xhr);
@@ -62,7 +70,7 @@
                     enabled: false
                 },
                 tooltip: {
-                    pointFormat: 'Capaian nilai: <b>{point.y:.1f} %</b>'
+                    pointFormat: 'Capaian nilai: <b>{point.y:.2f}%</b>'
                 },
                 series: [{
                     name: 'Capaian',
@@ -72,7 +80,7 @@
                         rotation: -90,
                         color: '#FFFFFF',
                         align: 'right',
-                        format: '{point.y:.2f}', // one decimal
+                        format: '{point.y:.2f}%', // one decimal
                         y: 10, // 10 pixels down from the top
                         style: {
                             fontSize: '13px',

@@ -20,7 +20,7 @@
                 <h5 class="card-title">List Standar</h5>
                 <div class="header-elements">
                     <div class="list-icons">
-                        <a href="{{ route('standar.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>&nbsp; Tambah</a>
+                        <a href="{{ route('standar.create', $id) }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>&nbsp; Tambah</a>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
 
         $(document).on('click', '.btn-edit', function(){
             var id = $(this).attr('data-id');
-            window.location = '{{ route('standar.index') }}/' + id + '/edit';
+            window.location = '/standar/' + id + '/edit';
         });
 
         $(document).on('click', '.btn-delete', function(){
@@ -72,7 +72,7 @@
 
             if(confirm('Apa anda yakin?')) {
                 $.ajax({
-                    url: '{{ route('standar.index') }}/' + id,
+                    url: '/standar/' + id,
                     type: 'POST',
                     data: { '_method': 'DELETE', '_token': csrf_token },
                     success: function(data) {

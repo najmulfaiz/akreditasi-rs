@@ -1,7 +1,13 @@
 @extends('_main')
 
 @section('title')
-    Upload & Penilaian
+    @if(Auth::user()->level == 3)
+        Penilaian Bab
+    @endif
+
+    @if(Auth::user()->level == 4)
+        Upload Dokumen
+    @endif
 @endsection
 
 @section('content')
@@ -36,7 +42,7 @@
                                 @if(Auth::user()->pokja == $pokja->id || Auth::user()->level == 1)
                                     <button type="button" data-id="{{ $pokja->id }}" class="btn btn-info btn-sm btn-view">View</button>
                                 @else
-                                    <button type="button" class="btn btn-info btn-sm" disabled>View</button>
+                                    <button type="button" class="btn btn-secondary btn-sm" disabled>View</button>
                                 @endif
                             </td>
                         </tr>
@@ -52,7 +58,9 @@
     <script></script>
     <script>
         $(document).ready(function(){
-            $('.table').DataTable();
+            $('.table').DataTable({
+                "paging": false
+            });
         });
 
         $(document).on('click', '.btn-view', function(){

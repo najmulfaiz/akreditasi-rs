@@ -1,0 +1,13 @@
+Requirement :
+1. Terinstall PHP versi 7 keatas
+2. Terinstall Composer
+
+Langkah-langkah :
+1. Ekstrak file zip
+2. Buka command prompt
+3. Change directory ke hasil ekstrak
+4. Sesuaikan settingan dengan database yang dibuat pada file ".env"
+5. Jalankan command "php artisan key:generate"
+6. Jalankan command "php artisan migrate --seed"
+7. Jalankan command "php artisan serve"
+8. Buka aplikasi pada browser

@@ -178,7 +178,7 @@
                             <ul class="nav nav-group-sub" data-submenu-title="Master">
                                 <li class="nav-item"><a href="{{ route('user.index') }}" class="nav-link">Users</a></li>
                                 <li class="nav-item"><a href="{{ route('pokja.index') }}" class="nav-link">Pokja</a></li>
-                                <li class="nav-item"><a href="{{ route('standar.index') }}" class="nav-link">Standar</a></li>
+                                <li class="nav-item"><a href="{{ route('standar.pokja') }}" class="nav-link">Standar</a></li>
                                 <li class="nav-item"><a href="{{ route('elemen.pokja') }}" class="nav-link">Elemen Penilaian</a></li>
                             </ul>
                         </li>
