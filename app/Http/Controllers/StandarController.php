@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Standar;
 use Illuminate\Http\Request;
+use Excel;
 
 class StandarController extends Controller
 {
@@ -123,5 +124,25 @@ class StandarController extends Controller
         $pokjas = \App\Pokja::all();
 
         return view('standar.pokja', compact('pokjas'));
+    }
+
+    public function import(Request $request, $id)
+    {
+        if($request->hasFile('file')) {
+            $path = $request->file('file')->getRealPath();
+            $data = Excel::load($path, function($reader){})->get();
+            if(!empty($data) && $data->count()) {
+                foreach($data as $key => $value) {
+                    $standar = new Standar;
+                    $standar->nama = $value->nama;
+                    $standar->deskripsi = $value->deskripsi;
+                    $standar->pokja_id = $id;
+                    $standar->save();
+                }
+
+                return redirect()->route('standar.index', $id)->with('pesan', 'Standar berhasil di input');
+            }
+        }
+        return redirect()->route('standar.index', $id)->with('pesan', 'Oops... terjadi kesalahan');
     }
 }

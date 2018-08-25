@@ -13,6 +13,29 @@
     </div>
 @endif
 
+<div id="modal_import" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Import Standar</h5>
+            </div>
+
+            <form action="{{ route('standar.import', $id) }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <input type="file" name="file">
+                </div>
+
+                <div class="modal-footer">
+                    <input type="reset" class="btn bg-danger" value="Cancel" id="btn_close">
+                    <button type="submit" class="btn bg-primary">Save</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
 <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="card">
@@ -20,15 +43,24 @@
                 <h5 class="card-title">List Standar</h5>
                 <div class="header-elements">
                     <div class="list-icons">
+                        <button class="btn btn-primary btn-sm" id="btn_upload"><i class="fa fa-upload"></i>&nbsp; Import</button>
                         <a href="{{ route('standar.create', $id) }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>&nbsp; Tambah</a>
                     </div>
                 </div>
+            </div>
+            <div class="card-body">
+                <table class="table-detail">
+                    <tr>
+                        <td><b>POKJA</b></td>
+                        <td>:</td>
+                        <td>{{ $standars[0]->pokja->nama }}</td>
+                    </tr>
+                </table>
             </div>
             <table class="table table-striped table-hovered">
                 <thead>
                     <tr>
                         <td>No</td>
-                        <td>Nama Pokja</td>
                         <td>Nama Standar</td>
                         <td>Deskripsi</td>
                         <td>#</td>
@@ -38,7 +70,6 @@
                     @foreach($standars as $index => $standar)
                         <tr>
                             <td>{{ ($index + 1) }}</td>
-                            <td>{{ $standar->pokja->nama }}</td>
                             <td>{{ $standar->nama }}</td>
                             <td>{{ $standar->deskripsi }}</td>
                             <td>
@@ -84,6 +115,17 @@
                     }
                 });
             }
+        });
+
+        $(document).on('click', '#btn_upload', function(){
+            $('#modal_import').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+        });
+
+        $(document).on('click', '#btn_close', function(){
+            $('#modal_import').modal('hide')
         });
     </script>
 @endsection

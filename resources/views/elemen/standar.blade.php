@@ -19,11 +19,37 @@
     }
 </style>
 
+<div id="modal_import" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Import Standar</h5>
+            </div>
+
+            <form action="{{ route('elemen.import') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <input type="file" name="file">
+                </div>
+
+                <div class="modal-footer">
+                    <input type="reset" class="btn bg-danger" value="Cancel" id="btn_close">
+                    <button type="submit" class="btn bg-primary">Save</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
 <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header header-elements-inline">
                 <h5 class="card-title">List Standar</h5>
+                <div class="list-icons">
+                    <button class="btn btn-primary btn-sm" id="btn_upload"><i class="fa fa-upload"></i>&nbsp; Import</button>
+                </div>
             </div>
             <div class="card-body">
                 <table class="table-detail">
@@ -71,6 +97,17 @@
         $(document).on('click', '.btn-view', function(){
             var id = $(this).attr('data-id');
             window.location = '/pokja/standar/' + id + '/elemen';
+        });
+
+        $(document).on('click', '#btn_upload', function(){
+            $('#modal_import').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+        });
+
+        $(document).on('click', '#btn_close', function(){
+            $('#modal_import').modal('hide')
         });
     </script>
 @endsection
