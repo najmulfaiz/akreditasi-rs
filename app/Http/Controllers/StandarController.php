@@ -15,10 +15,12 @@ class StandarController extends Controller
      */
     public function index($id)
     {
+        $pokja = \App\Pokja::where('id', $id)->first();
+
         $standars = Standar::where('pokja_id', $id)
                     ->orderBy('nama')
                     ->get();
-        return view('standar.index', compact('standars', 'id'));
+        return view('standar.index', compact('standars', 'pokja'));
     }
 
     /**

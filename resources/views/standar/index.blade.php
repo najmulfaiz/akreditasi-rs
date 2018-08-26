@@ -20,7 +20,7 @@
                 <h5 class="modal-title">Import Standar</h5>
             </div>
 
-            <form action="{{ route('standar.import', $id) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('standar.import', $pokja->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <input type="file" name="file">
@@ -44,7 +44,7 @@
                 <div class="header-elements">
                     <div class="list-icons">
                         <button class="btn btn-primary btn-sm" id="btn_upload"><i class="fa fa-upload"></i>&nbsp; Import</button>
-                        <a href="{{ route('standar.create', $id) }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>&nbsp; Tambah</a>
+                        <a href="{{ route('standar.create', $pokja->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>&nbsp; Tambah</a>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                     <tr>
                         <td><b>POKJA</b></td>
                         <td>:</td>
-                        <td>{{ $standars[0]->pokja->nama }}</td>
+                        <td>{{ $pokja->nama }}</td>
                     </tr>
                 </table>
             </div>
