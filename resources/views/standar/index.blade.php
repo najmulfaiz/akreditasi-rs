@@ -1,7 +1,7 @@
 @extends('_main')
 
 @section('title')
-    Master Standar
+    <a href="{{ route('standar.pokja') }}"><i class="icon-arrow-left52 mr-2 icon-2x" title="Kembali"></i></a> Master Standar
 @endsection
 
 @section('content')
