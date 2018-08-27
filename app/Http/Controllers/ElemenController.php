@@ -166,20 +166,21 @@ class ElemenController extends Controller
 
                 foreach($data as $key => $value) {
                     if($value->standar != $standar_) {
-                        echo '===================';
                         $standar_ = $value->standar;
                         $standar = \App\Standar::where('nama', '=', $value->standar)->first();
-                        echo '<br />';
+                        
                     }
-
-                    $elemen = new Elemen;
-                    $elemen->nama = $value->nama;
-                    $elemen->deskripsi = $value->deskripsi;
-                    $elemen->standar_id = $standar->id;
-                    $elemen->save();
+                    
+                    if($standar) {
+                        $elemen = new Elemen;
+                        $elemen->nama = $value->nama;
+                        $elemen->deskripsi = $value->deskripsi;
+                        $elemen->standar_id = $standar->id;
+                        $elemen->save();
+                    }
                 }
 
-                return redirect()->route('elemen.standar', $standar->pokja_id)->with('pesan', 'Elemen berhasil di input');
+                return redirect()->route('elemen.pokja')->with('pesan', 'Elemen berhasil di input');
             }
         }
         return redirect()->route('elemen.standar', $standar->id)->with('pesan', 'Oops... terjadi kesalahan');
