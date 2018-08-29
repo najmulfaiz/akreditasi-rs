@@ -43,7 +43,7 @@
                 <h5 class="card-title">List Standar</h5>
                 <div class="header-elements">
                     <div class="list-icons">
-                        <button class="btn btn-primary btn-sm" id="btn_upload"><i class="fa fa-upload"></i>&nbsp; Import</button>
+                        <button class="btn btn-primary btn-sm" id="btn_upload" style="display: none;"><i class="fa fa-upload"></i>&nbsp; Import</button>
                         <a href="{{ route('standar.create', $pokja->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>&nbsp; Tambah</a>
                     </div>
                 </div>

@@ -48,7 +48,7 @@
             <div class="card-header header-elements-inline">
                 <h5 class="card-title">List Standar</h5>
                 <div class="list-icons">
-                    <button class="btn btn-primary btn-sm" id="btn_upload"><i class="fa fa-upload"></i>&nbsp; Import</button>
+                    <button class="btn btn-primary btn-sm" id="btn_upload" style="display: none;"><i class="fa fa-upload"></i>&nbsp; Import</button>
                 </div>
             </div>
             <div class="card-body">
