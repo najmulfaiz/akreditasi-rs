@@ -87,7 +87,17 @@
                             fontFamily: 'Verdana, sans-serif'
                         }
                     }
-                }]
+                }],
+                plotOptions: {
+                    column: {
+                        zones: [{
+                            value: 80,
+                            color: '#ff7043'
+                        },{
+                            color: '#66bb6a'
+                        }]
+                    }
+                }
             });
         }
     </script>

@@ -41,8 +41,6 @@
                             <td>
                                 @if(Auth::user()->pokja == $pokja->id || Auth::user()->level == 1)
                                     <button type="button" data-id="{{ $pokja->id }}" class="btn btn-info btn-sm btn-view">View</button>
-                                @else
-                                    <button type="button" class="btn btn-secondary btn-sm" disabled>View</button>
                                 @endif
                             </td>
                         </tr>
