@@ -1,19 +1,41 @@
 @extends('_main')
 
 @section('content')
+<style>
+    .bullet-hijau {
+        background-color: #009688;
+    }
+    .bullet-oranye {
+        background-color: #F57C00;
+    }
+</style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
                     <div id="grafik_capaian" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
-                    
+                    <table align="center">
+                        <tr>
+                            <td width="25px" class="bullet-hijau"></td>
+                            <td width="20px" align="center">:</td>
+                            <td>Tercapai</td>
+                            <td width="25px"></td>
+                            <td width="25px" class="bullet-oranye"></td>
+                            <td width="20px" align="center">:</td>
+                            <td>Belum Tercapai</td>
+                        </tr>
+                    </table>
                     <hr>
-                    <h4 id="status"></h4>
-                    <p class="text-default">
-                        Kriteria Kelulusan : <br>
-                        Semua bab skor >= 80% (min 80%)
-                    </p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 id="status"></h4>
+                            <p class="text-default">
+                                Kriteria Kelulusan : <br>
+                                Semua bab skor >= 80% (min 80%)
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -83,7 +105,7 @@
                         format: '{point.y:.2f}%', // one decimal
                         y: 10, // 10 pixels down from the top
                         style: {
-                            fontSize: '13px',
+                            fontSize: '10px',
                             fontFamily: 'Verdana, sans-serif'
                         }
                     }
@@ -92,9 +114,9 @@
                     column: {
                         zones: [{
                             value: 80,
-                            color: '#ff7043'
+                            color: '#F57C00'
                         },{
-                            color: '#66bb6a'
+                            color: '#009688'
                         }]
                     }
                 }
