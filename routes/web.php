@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
 	return redirect('home');
     // return view('welcome');
@@ -28,7 +17,6 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/standar/{id}/create', 'StandarController@create')->name('standar.create');
 	Route::get('/standar/{id}/list', 'StandarController@index')->name('standar.index');
 	Route::get('standar/pokja', 'StandarController@pokja')->name('standar.pokja');
-	// Route::post('standar/{id}/import', 'StandarController@import')->name('standar.import');
 
 	// ELEMEN ROUTING
 	Route::get('pokja/elemen', 'ElemenController@pokja')->name('elemen.pokja');
@@ -41,7 +29,6 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::patch('pokja/standar/elemen/{id}/nilai', 'ElemenController@nilai')->name('elemen.nilai');
 	Route::delete('pokja/standar/elemen/{id}', 'ElemenController@destroy')->name('elemen.destroy');
 	Route::patch('elemen/{id}/note', 'ElemenController@note')->name('elemen.note');
-	// Route::post('elemen/import', 'ElemenController@import')->name('elemen.import');
 
 	// UPLOAD & PENILAIAN ROUTING
 	Route::get('pokja/upload-nilai', 'UploadNilaiController@pokja')->name('upload-nilai.pokja');
